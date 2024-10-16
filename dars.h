@@ -7,14 +7,11 @@
 class Dars
 {
     public:
-    void import(std::istream &ins);
-
+    Dars();
+    void import(std::istream &ins, std::ostream &outs);
+    
     private:
         Student student;
-    
-
-
-
 };
 
 #endif

@@ -9,7 +9,7 @@ class Student
 {
 public:
     Student();
-    std::string const get(std::string info);
+    std::string get(std::string info)const;
     
 private:
     std::string name, pid, advisor, mentor;
