@@ -27,7 +27,7 @@ int main()
         exit(1);
     }
     fout.open("output.txt");
-    dars.import(fin, fout);
+    dars.importBA(fin, fout);
     fout.close();
 
     return 0;

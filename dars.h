@@ -8,7 +8,7 @@ class Dars
 {
     public:
     Dars();
-    void import(std::istream &ins, std::ostream &outs);
+    void importBA(std::istream &ins, std::ostream &outs);
     
     private:
         Student student;

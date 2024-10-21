@@ -2,20 +2,26 @@
 #define STUDENT_H
 
 #include <iostream>
-#include <list>
-#include "programs.h"
+#include <vector>
+#include "degreeProgram.h"
 
 class Student
 {
 public:
+    // constructor
     Student();
-    std::string get(std::string info)const;
-    
+
+
+
 private:
-    std::string name, pid, advisor, mentor;
-    int catelog;
-    float gpa;
-    Programs program;
+    std::string name;
+    std::string pid;
+    std::string catalogYear;
+    std::string college;
+    std::vector<DegreeProgram> majors;
+    std::vector<DegreeProgram> minors;
+    std::vector<DegreeProgram> certificates;
+    std::vector<DegreeProgram> honors;
 };
 
 #endif
