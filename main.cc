@@ -9,7 +9,7 @@ int main()
     ifstream fin;
     ofstream fout;
     string filename;
-    Dars dars;
+    Dars myDars;
 
     cout << "|---------------------------------------------------------|" << endl
          << "|              Welcome to the DARS Assistant              |" << endl
@@ -27,7 +27,7 @@ int main()
         exit(1);
     }
     fout.open("output.txt");
-    dars.importBA(fin, fout);
+    myDars.importBA(fin, fout);
     fout.close();
 
     return 0;

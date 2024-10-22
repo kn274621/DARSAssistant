@@ -6,12 +6,17 @@
 
 class Dars
 {
-    public:
+public:
     Dars();
     void importBA(std::istream &ins, std::ostream &outs);
+
     
-    private:
-        Student student;
+
+private:
+    Student student;
+    std::string pascal(std::string &str);
 };
 
 #endif
+
+

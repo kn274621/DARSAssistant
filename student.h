@@ -11,7 +11,11 @@ public:
     // constructor
     Student();
 
-
+    // setters
+    void setName(const std::string &n) { name = n; }
+    void setPID(const std::string &p) { pid = p; }
+    void setCatalogYear(const std::string &y) { catalogYear = y; }
+    void setCollege(const std::string &c) { college = c; }
 
 private:
     std::string name;
