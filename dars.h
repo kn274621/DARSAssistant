@@ -7,10 +7,11 @@
 class Dars
 {
 public:
-    Dars();
-    void importBA(std::istream &ins, std::ostream &outs);
+    // default constructor, initializes a default student object
+    Dars(const Student &s = Student())
+        : student(s) {}
 
-    
+    void importBA(std::istream &ins, std::ostream &outs);
 
 private:
     Student student;
@@ -18,5 +19,3 @@ private:
 };
 
 #endif
-
-

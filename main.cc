@@ -3,19 +3,19 @@
 #include "dars.h"
 using namespace std;
 
-int main()
+int main(int argc, char *argv[]) 
 {
     // declare variables for reading/writing to a file
     ifstream fin;
     ofstream fout;
-    string filename;
+    string filename = argv[1];
     Dars myDars;
 
     cout << "|---------------------------------------------------------|" << endl
          << "|              Welcome to the DARS Assistant              |" << endl
          << "|---------------------------------------------------------|" << endl;
 
-    fin.open("dars.txt");
+    fin.open(filename + ".txt");
     if (fin.fail())
     {
         cout << "|               \033[31mERROR: \"dars.txt\" not found.\033[0m              |" << endl

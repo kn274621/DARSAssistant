@@ -6,7 +6,9 @@
 class Course
 {
 public:
-    Course(const std::string &n = "", const std::string &code = "", const std::string &g = "", const double &creds = 0, const bool isComp = false);
+    // default constructor, initializes all strings to "", credits to 0, and completed to false
+    Course(const std::string &n = "", const std::string &code = "", const std::string &g = "", const double &creds = 0, const bool isComp = false)
+        : courseName(n), courseCode(code), grade(g), credits(creds), isComplete(isComp) {}
 
     // getters
 
