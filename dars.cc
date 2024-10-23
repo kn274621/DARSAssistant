@@ -114,7 +114,7 @@ void Dars::importBA(istream &ins, ostream &outs)
                     tmp = tmp.substr(0, tmp.find(" |"));
                 }
                 outs << tmp << endl;
-                student.getMajor(0).setDegreeName(tmp);
+                student.getMajors()[0].setPlanName(tmp);
                 isFound = true;
             }
 
@@ -129,41 +129,127 @@ void Dars::importBA(istream &ins, ostream &outs)
     while (!isFound)
     {
         if (tmp.find("OTHER DECLARED PROGRAM(s)") != string::npos)
-        {
-            getline(ins, tmp);
-            getline(ins, tmp);
-            
-            if(tmp.find("MAJOR"))
-            {
-
-            }
-            if(tmp.find("MINOR")){
-
-            }
-            if(tmp.find("CERT."))
-            {
-
-            }
-            if(tmp.find("HONOR"))
-            {
-
-            }
-            
-            // eliminate leading and trailing characters
-            if (tmp.size() >= 5)
-                tmp = tmp.erase(0, 5);
-            
-            outs << tmp << endl;
-            // student.getMajor(0).setDegreeName(tmp);
             isFound = true;
-        }
         else if (tmp.find("Transcripted hours") != string::npos)
-        {
             isFound = true;
-        }
         else
             getline(ins, tmp);
     }
+    // if there are other declared programs, take their type, code, and name
+    if (tmp.find("OTHER DECLARED PROGRAM(s)") != string::npos)
+    {
+        getline(ins, tmp);
+        getline(ins, tmp);
+        while (tmp.find("Transcripted hours") == string::npos)
+        {
+            if (tmp.find("MAJOR") != string::npos)
+            {
+                tmp = tmp.erase(0, 5);
+                data = tmp.substr(0, 5);
+
+                // plan type
+                student.addMajor();
+                student.getMajors().back().setPlanType(data);
+                outs << data << endl;
+
+                // plan code
+                tmp = tmp.erase(0, 6);
+                data = tmp.substr(0, 6);
+                tmp = tmp.erase(0, 7);
+                student.getMajors().back().setPlanCode(data);
+                outs << data << endl;
+
+                // plan name
+                data = tmp.substr(0, tmp.find("|") - 13);
+                tmp = tmp.erase(0, tmp.find("|") + 1);
+                student.getMajors().back().setPlanName(data);
+                outs << data << endl;
+
+                tmp = tmp.erase(0, tmp.find(" ") + 1);
+            }
+            if (tmp.find("MINOR") != string::npos)
+            {
+                tmp = tmp.erase(0, 5);
+                data = tmp.substr(0, 5);
+
+                // plan type
+                student.addMinor();
+                student.getMinors().back().setPlanType(data);
+                outs << data << endl;
+
+                // plan code
+                tmp = tmp.erase(0, 6);
+                data = tmp.substr(0, 6);
+                tmp = tmp.erase(0, 7);
+                student.getMinors().back().setPlanCode(data);
+                outs << data << endl;
+
+                // plan name
+                data = tmp.substr(0, tmp.find("|") - 13);
+                tmp = tmp.erase(0, tmp.find("|") + 1);
+                student.getMinors().back().setPlanName(data);
+                outs << data << endl;
+
+                tmp = tmp.erase(0, tmp.find(" ") + 1);
+            }
+            if (tmp.find("CERT.") != string::npos)
+            {
+                tmp = tmp.erase(0, 5);
+                data = tmp.substr(0, 5);
+
+                // plan type
+                student.addCertificate();
+                student.getCertificates().back().setPlanType(data);
+                outs << data << endl;
+
+                // plan code
+                tmp = tmp.erase(0, 6);
+                data = tmp.substr(0, 6);
+                tmp = tmp.erase(0, 7);
+                student.getCertificates().back().setPlanCode(data);
+                outs << data << endl;
+
+                // plan name
+                data = tmp.substr(0, tmp.find("|") - 13);
+                tmp = tmp.erase(0, tmp.find("|") + 1);
+                student.getCertificates().back().setPlanName(data);
+                outs << data << endl;
+
+                tmp = tmp.erase(0, tmp.find(" ") + 1);
+            }
+            if (tmp.find("HONOR") != string::npos)
+            {
+                tmp = tmp.erase(0, 5);
+                data = tmp.substr(0, 5);
+
+                // plan type
+                student.addHonor();
+                student.getHonors().back().setPlanType(data);
+                outs << data << endl;
+
+                // plan code
+                tmp = tmp.erase(0, 6);
+                data = tmp.substr(0, 6);
+                tmp = tmp.erase(0, 7);
+                student.getHonors().back().setPlanCode(data);
+                outs << data << endl;
+
+                // plan name
+                data = tmp.substr(0, tmp.find("|") - 13);
+                tmp = tmp.erase(0, tmp.find("|") + 1);
+                student.getHonors().back().setPlanName(data);
+                outs << data << endl;
+
+                tmp = tmp.erase(0, tmp.find(" ") + 1);
+            }
+            getline(ins, tmp);
+        }
+    }
+    // the issue here is that my columns and everyone else's are not symmetrical
+    tmp.erase(0, tmp.find("|"));
+    outs << tmp << endl;
+
+
 }
 
 string Dars::pascal(string &str)

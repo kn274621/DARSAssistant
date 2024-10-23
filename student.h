@@ -13,10 +13,10 @@ public:
         : name(n), pid(p), catalogYear(y), college(c), degreeTrack(d) {}
 
     // getters
-    DegreePlan getMajor(const int &i) { return majors[i]; }
-    DegreePlan getMinor(const int &i) { return minors[i]; }
-    DegreePlan getCertificate(const int &i) { return certificates[i]; }
-    DegreePlan getHonor(const int &i) { return honors[i]; }
+    std::vector<DegreePlan> getMajors() { return majors; }
+    std::vector<DegreePlan> getMinors() { return minors; }
+    std::vector<DegreePlan> getCertificates() { return certificates; }
+    std::vector<DegreePlan> getHonors() { return honors; }
 
     // setters
     void setName(const std::string &n) { name = n; }

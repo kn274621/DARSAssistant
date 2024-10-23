@@ -15,7 +15,9 @@ public:
     // getters
 
     // setters
-    void setDegreeName(const std::string &n) { planName = n; }
+    void setPlanName(const std::string &n) { planName = n; }
+    void setPlanType(const std::string &t) { planType = t; }
+    void setPlanCode(const std::string &c) { planCode = c; }
 
 private:
     std::string planName;
